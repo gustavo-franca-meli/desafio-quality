@@ -13,4 +13,5 @@ public class RoomErrorsMessage {
     public static final String LENGTH_IS_MORE_THAN_MAXIMUM ="The maximum length allowed per room is 33 meters.";
     public static final String LENGTH_MUST_BE_GREATER_THAN_ZERO ="Length must be greater than zero";
 
+    public static final String NOT_FOUND = "Not Found room";
 }
