@@ -32,4 +32,14 @@ public class PropertyRequestTest {
         districtName = "aananalasdasdasdasdasdasdasdasdasdadaasdasdasdasdsdsdsdasdasdasdasdad";
         return this;
     }
+
+    public PropertyRequestTest withCustomRooms(List<RoomRequest> rooms) {
+        this.rooms = rooms;
+        return this;
+    }
+
+    public PropertyRequestTest withRoom(String name, Double width, Double length) {
+         rooms.add(new RoomRequestTestFactory().withFields(name,width,length).create());
+         return this;
+    }
 }

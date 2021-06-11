@@ -12,6 +12,13 @@ public class RoomRequestTestFactory {
         length = 10.;
         return this;
     }
+    public RoomRequestTestFactory withFields(String name,Double width,Double length){
+        this.length =  length;
+        this.width = width;
+        this.name =name;
+        return this;
+    }
+
 
     public RoomRequest create(){
         return new RoomRequest(name,width,length);
