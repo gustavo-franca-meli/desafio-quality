@@ -2,8 +2,8 @@ package com.example.desafioquality.domain;
 
 import com.example.desafioquality.domain.Enum.PropertyErrosMessage;
 
-import java.io.ObjectStreamException;
 import java.util.List;
+import java.util.Optional;
 
 public class Property {
     private String name;
@@ -47,5 +47,10 @@ public class Property {
     }
     public Double totalSquareMeters() {
         return rooms.stream().reduce(0.,(acc, cur)->cur.squareMeters() + acc,Double::sum);
+    }
+
+    public Optional<Room> roomBiggest() {
+        return rooms.stream().reduce((acc, cur)-> acc.squareMeters() > cur.squareMeters()?acc: cur);
+
     }
 }

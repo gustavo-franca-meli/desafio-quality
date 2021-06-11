@@ -16,6 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -103,4 +105,16 @@ public class PropertyControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
+
+
+    @Test
+    public void shouldReturnRoomBiggestWithAllFields() throws Exception {
+        mockMvc.perform(post("/properties/roomBiggest").contentType(MediaType.APPLICATION_JSON).content(requestJson))
+                .andDo(print())
+                .andExpect(jsonPath("$.room_biggest_name").exists())
+                .andExpect(jsonPath("$.room_biggest_width").isNumber())
+                .andExpect(jsonPath("$.room_biggest_length").isNumber())
+                .andExpect(jsonPath("$.room_biggest_square_meters").isNumber());
+    }
+
 }

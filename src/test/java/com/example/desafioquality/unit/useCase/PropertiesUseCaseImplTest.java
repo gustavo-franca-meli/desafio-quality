@@ -3,7 +3,9 @@ package com.example.desafioquality.unit.useCase;
 import com.example.desafioquality.aplication.request.PropertyRequest;
 import com.example.desafioquality.aplication.request.RoomRequest;
 import com.example.desafioquality.aplication.useCase.impl.PropertiesUseCaseImpl;
+import com.example.desafioquality.domain.Exceptions.EntityNotFoundException;
 import com.example.desafioquality.factories.PropertyRequestTest;
+import com.example.desafioquality.factories.RoomRequestTestFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
@@ -35,4 +37,29 @@ public class PropertiesUseCaseImplTest {
         PropertyRequest propertyRequest = new PropertyRequestTest().withInvalidFields().create();
         assertThrows(IllegalArgumentException.class,()->propertiesUseCase.totalSquareMeters(propertyRequest));
     }
+
+    @Test
+    public void shouldThrowIfPropertyRequestIsInvalidInReturnsBiggerRoomMethod(){
+        PropertyRequest propertyRequest = new PropertyRequestTest().withInvalidFields().create();
+        assertThrows(IllegalArgumentException.class,()->propertiesUseCase.returnsBiggerRoom(propertyRequest));
+    }
+
+    @Test
+    public void shouldThrowIfPropertyRequestIsNullInReturnsBiggerRoomMethod(){
+        PropertyRequest propertyRequest = null;
+        assertThrows(IllegalArgumentException.class,()->propertiesUseCase.returnsBiggerRoom(propertyRequest));
+    }
+
+    @Test
+    public void shouldReturnARoomBiggest() throws EntityNotFoundException {
+        Double width = 20.;
+        Double length = 20.;
+        Double squareMeters = width * length;
+
+        var propertyRequest = new PropertyRequestTest().withValidFields().withRoom("Room biggest",width,length).create();
+        var room = propertiesUseCase.returnsBiggerRoom(propertyRequest);
+        assertEquals(squareMeters,room.squareMeters);
+    }
+
+
 }
