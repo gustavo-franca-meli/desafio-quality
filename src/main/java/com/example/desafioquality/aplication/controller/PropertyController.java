@@ -2,6 +2,7 @@ package com.example.desafioquality.aplication.controller;
 
 
 import com.example.desafioquality.aplication.request.PropertyRequest;
+import com.example.desafioquality.aplication.response.RoomBiggestResponse;
 import com.example.desafioquality.aplication.response.TotalSquareMetersResponse;
 import com.example.desafioquality.aplication.useCase.PropertiesUseCase;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,9 @@ public class PropertyController {
     @PostMapping("totalSquareMeters")
     public ResponseEntity<TotalSquareMetersResponse> totalSquareMeters(@Valid @RequestBody PropertyRequest request){
         return ResponseEntity.ok(propertiesUseCase.totalSquareMeters(request));
+    }
+    @PostMapping("roomBiggest")
+    public ResponseEntity<RoomBiggestResponse> returnsBiggerRoom(@Valid @RequestBody PropertyRequest request){
+        return ResponseEntity.ok(propertiesUseCase.returnsBiggerRoom(request));
     }
 }
