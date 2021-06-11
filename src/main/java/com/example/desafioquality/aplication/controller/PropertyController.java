@@ -5,6 +5,7 @@ import com.example.desafioquality.aplication.request.PropertyRequest;
 import com.example.desafioquality.aplication.response.RoomBiggestResponse;
 import com.example.desafioquality.aplication.response.TotalSquareMetersResponse;
 import com.example.desafioquality.aplication.useCase.PropertiesUseCase;
+import com.example.desafioquality.domain.Exceptions.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class PropertyController {
         return ResponseEntity.ok(propertiesUseCase.totalSquareMeters(request));
     }
     @PostMapping("roomBiggest")
-    public ResponseEntity<RoomBiggestResponse> returnsBiggerRoom(@Valid @RequestBody PropertyRequest request){
+    public ResponseEntity<RoomBiggestResponse> returnsBiggerRoom(@Valid @RequestBody PropertyRequest request) throws EntityNotFoundException {
         return ResponseEntity.ok(propertiesUseCase.returnsBiggerRoom(request));
     }
 }
