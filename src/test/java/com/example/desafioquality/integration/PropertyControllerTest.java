@@ -41,6 +41,7 @@ public class PropertyControllerTest {
 
     }
 
+    // US0001 - totalSquareMeters
     @Test
     public void shouldReturnTotalSquareMetersResponseWithAllFields() throws Exception {
         mockMvc.perform(post("/properties/totalSquareMeters").contentType(MediaType.APPLICATION_JSON).content(requestJson))
@@ -97,7 +98,7 @@ public class PropertyControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
-    @Test void shouldReturnBadRequestWhenDistrictNameIsNull() throws Exception {
+    @Test  void shouldReturnBadRequestWhenDistrictNameIsNull() throws Exception {
         String nullJson ="{}";
         propertyRequest.districtName = null;
         requestJson = mapper.writeValueAsString(propertyRequest);
@@ -106,7 +107,7 @@ public class PropertyControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-
+    // US0003 - roomBiggest
     @Test
     public void shouldReturnRoomBiggestWithAllFields() throws Exception {
         mockMvc.perform(post("/properties/roomBiggest").contentType(MediaType.APPLICATION_JSON).content(requestJson))
@@ -115,6 +116,20 @@ public class PropertyControllerTest {
                 .andExpect(jsonPath("$.room_biggest_width").isNumber())
                 .andExpect(jsonPath("$.room_biggest_length").isNumber())
                 .andExpect(jsonPath("$.room_biggest_square_meters").isNumber());
+    }
+
+    // US0004 - RoomsSquareMeters
+
+    @Test
+    public void shouldReturnRoomsWithAllFields() throws Exception {
+        mockMvc.perform(post("/properties/roomsSquareMeters").contentType(MediaType.APPLICATION_JSON).content(requestJson))
+                .andDo(print())
+                .andExpect(jsonPath("$.property_name").exists())
+                .andExpect(jsonPath("$.rooms").isArray())
+                .andExpect(jsonPath("$.rooms[0].room_length").isNumber())
+                .andExpect(jsonPath("$.rooms[0].room_width").isNumber())
+                .andExpect(jsonPath("$.rooms[0].room_square_meters").isNumber())
+                .andExpect(jsonPath("$.rooms[0].room_name").isNotEmpty());
     }
 
 }
