@@ -7,4 +7,5 @@ public  class PropertyErrosMessage {
     public static final String DISTRICT_IS_EMPTY = "The neighborhood cannot be empty.";
     public static final String ROOM_IS_EMPTY = "Room cannot be empty";
     public static final String ROOM_IS_REQUIRED = "One room is required";
+    public static final String DISTRICT_SQUARE_METERS_PRICE_IS_INVALID = "district square meters price is invalid";
 }
