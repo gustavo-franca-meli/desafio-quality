@@ -50,6 +50,7 @@ public class PropertiesUseCaseImplTest {
         assertThrows(IllegalArgumentException.class,()->propertiesUseCase.returnsBiggerRoom(propertyRequest));
     }
 
+    //US003
     @Test
     public void shouldReturnARoomBiggest() throws EntityNotFoundException {
         Double width = 20.;
@@ -59,6 +60,14 @@ public class PropertiesUseCaseImplTest {
         var propertyRequest = new PropertyRequestTest().withValidFields().withRoom("Room biggest",width,length).create();
         var room = propertiesUseCase.returnsBiggerRoom(propertyRequest);
         assertEquals(squareMeters,room.squareMeters);
+    }
+    //US0004
+    @Test
+    public void shouldReturnsNumbersOfSquareMetersEachRoom()  {
+        var propertyRequest = new PropertyRequestTest().withValidFields().create();
+        var response = propertiesUseCase.returnsNumbersOfSquareMetersEachRoom(propertyRequest);
+        var room = propertyRequest.rooms.get(0);
+        assertEquals((room.width * room.length),response.rooms.get(0).getSquareMeters());
     }
 
 
