@@ -50,7 +50,6 @@ public class Property {
     }
 
     public Optional<Room> roomBiggest() {
-        return rooms.stream().reduce((acc, cur)-> acc.squareMeters() > cur.squareMeters()?acc: cur);
-
+        return rooms.stream().reduce((acc, cur)-> acc.squareMeters() >= cur.squareMeters()?acc: cur);
     }
 }

@@ -3,6 +3,7 @@ package com.example.desafioquality.aplication.controller;
 
 import com.example.desafioquality.aplication.request.PropertyRequest;
 import com.example.desafioquality.aplication.response.RoomBiggestResponse;
+import com.example.desafioquality.aplication.response.RoomsSquareMetersResponse;
 import com.example.desafioquality.aplication.response.TotalSquareMetersResponse;
 import com.example.desafioquality.aplication.useCase.PropertiesUseCase;
 import com.example.desafioquality.domain.Exceptions.EntityNotFoundException;
@@ -28,8 +29,13 @@ public class PropertyController {
     public ResponseEntity<TotalSquareMetersResponse> totalSquareMeters(@Valid @RequestBody PropertyRequest request){
         return ResponseEntity.ok(propertiesUseCase.totalSquareMeters(request));
     }
+
     @PostMapping("roomBiggest")
     public ResponseEntity<RoomBiggestResponse> returnsBiggerRoom(@Valid @RequestBody PropertyRequest request) throws EntityNotFoundException {
         return ResponseEntity.ok(propertiesUseCase.returnsBiggerRoom(request));
+    }
+    @PostMapping("roomsSquareMeters")
+    public ResponseEntity<RoomsSquareMetersResponse> returnsNumbersOfSquareMetersEachRoom(@Valid @RequestBody PropertyRequest request)  {
+        return ResponseEntity.ok(propertiesUseCase.returnsNumbersOfSquareMetersEachRoom(request));
     }
 }
