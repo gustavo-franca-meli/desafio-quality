@@ -17,7 +17,7 @@ public class PropertyRequestTest {
         rooms.add(new RoomRequestTestFactory().withValidFields().create());
         rooms.add(new RoomRequestTestFactory().withValidFields().create());
         propertyName = "Apartamento";
-        districtName = "Bananal";
+        districtName = "Centro";
         return this;
     }
 

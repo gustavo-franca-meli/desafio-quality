@@ -1,6 +1,7 @@
 package com.example.desafioquality.aplication.useCase;
 
 import com.example.desafioquality.aplication.request.PropertyRequest;
+import com.example.desafioquality.aplication.response.PropertyValueResponse;
 import com.example.desafioquality.aplication.response.RoomBiggestResponse;
 import com.example.desafioquality.aplication.response.RoomsSquareMetersResponse;
 import com.example.desafioquality.aplication.response.TotalSquareMetersResponse;
@@ -13,4 +14,6 @@ public interface PropertiesUseCase {
     RoomBiggestResponse returnsBiggerRoom(PropertyRequest request) throws EntityNotFoundException;
 
     RoomsSquareMetersResponse returnsNumbersOfSquareMetersEachRoom(PropertyRequest request);
+
+    PropertyValueResponse returnValue(PropertyRequest request) throws EntityNotFoundException;
 }

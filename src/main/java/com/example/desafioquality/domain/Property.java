@@ -52,4 +52,9 @@ public class Property {
     public Optional<Room> roomBiggest() {
         return rooms.stream().reduce((acc, cur)-> acc.squareMeters() >= cur.squareMeters()?acc: cur);
     }
+
+    public Double value() {
+        if(district.getSquareMetersPrice() == null)throw new IllegalArgumentException(PropertyErrosMessage.DISTRICT_SQUARE_METERS_PRICE_IS_INVALID);
+        return totalSquareMeters() * district.getSquareMetersPrice();
+    }
 }
